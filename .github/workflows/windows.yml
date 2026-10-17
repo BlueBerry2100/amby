@@ -2,8 +2,14 @@ name: Windows build
 
 on:
   workflow_dispatch:
-  push:
-    tags: ['v*']
+    inputs:
+      tag:
+        description: Release tag to attach the zip to
+        required: true
+        default: v1.0.0
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -17,7 +23,13 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: flutter build windows --release
-      - uses: actions/upload-artifact@v4
-        with:
-          name: amby-windows-x64
-          path: build/windows/x64/runner/Release/
+      - name: Zip and attach to release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $zip = "amby-${{ inputs.tag }}-windows-x64.zip".Replace("-v", "-")
+          New-Item -ItemType Directory amby | Out-Null
+          Copy-Item build/windows/x64/runner/Release/* amby -Recurse
+          Compress-Archive amby $zip
+          gh release upload ${{ inputs.tag }} $zip --clobber
