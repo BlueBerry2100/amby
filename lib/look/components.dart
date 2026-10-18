@@ -501,7 +501,7 @@ class SoundCover extends StatelessWidget {
     }
 
     return FutureBuilder<ui.Image>(
-      future: path != null ? ArtSources.file(path) : ArtSources.icon(sound.icon),
+      future: path != null ? ArtSources.cover(sound) : ArtSources.icon(sound.icon),
       builder: (context, snapshot) {
         final image = snapshot.data;
         if (image == null) return const SizedBox.expand();

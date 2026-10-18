@@ -399,7 +399,7 @@ class _AirBackdrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<ui.Image>(
-    future: ArtSources.file(path),
+    future: ArtSources.cover(sound),
     builder: (context, snapshot) {
       final image = snapshot.data;
       if (image == null) return const SizedBox.expand();

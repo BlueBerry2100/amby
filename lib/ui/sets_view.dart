@@ -25,9 +25,11 @@ class SetsView extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.fromLTRB(pad, 4, pad, 16),
       children: [
-        header('Готовые сеты'),
-        for (final (i, set) in builtIn.indexed) _SetCard(state: state, set: set, index: i + 1),
-        const SizedBox(height: 20),
+        if (builtIn.isNotEmpty) ...[
+          header('Готовые сеты'),
+          for (final (i, set) in builtIn.indexed) _SetCard(state: state, set: set, index: i + 1),
+          const SizedBox(height: 20),
+        ],
         header('Мои сеты'),
         if (custom.isEmpty)
           Container(
