@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 import 'models.dart';
@@ -14,7 +15,19 @@ class AudioEngine {
   static const fade = Duration(milliseconds: 600);
 
   Future<void> init() async {
-    if (!_soloud.isInitialized) await _soloud.init();
+    if (_soloud.isInitialized) return;
+    if (defaultTargetPlatform == TargetPlatform.linux) {
+      // Через ALSA звук идёт в PipeWire-клиент прямо в нашем процессе, а его RT-модуль
+      // без rtkit ставит RLIMIT_RTTIME = 0, и ядро убивает приложение SIGKILL'ом.
+      // PulseAudio (pipewire-pulse) держит realtime-потоки на стороне сервера.
+      try {
+        await _soloud.init(linuxAudioBackend: LinuxAudioBackend.pulseAudio);
+        return;
+      } catch (_) {
+        // нет PulseAudio/pipewire-pulse — пусть miniaudio выберет сам
+      }
+    }
+    await _soloud.init();
   }
 
   /// Слайдер линейный, а слух — логарифмический; квадрат даёт более ровную шкалу.

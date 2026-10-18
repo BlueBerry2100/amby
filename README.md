@@ -33,6 +33,8 @@ flutter run            # Android-устройство или эмулятор
 flutter run -d linux   # нужны clang, cmake, ninja (sudo pacman -S clang cmake ninja)
 ```
 
+На Linux звук выводится через PulseAudio, в том числе через pipewire-pulse. Если его нет, приложение переходит на ALSA. В этом режиме на системе с PipeWire нужен `rtkit`. Без него PipeWire выставляет процессу `RLIMIT_RTTIME = 0`, и ядро сразу убивает приложение сигналом SIGKILL.
+
 ## Звуки
 
 В `assets/sounds/` лежат синтезированные заглушки: шумы, «дождь», «океан» и т. п. Их стоит заменить на реальные записи.
