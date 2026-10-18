@@ -51,6 +51,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   integration_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -122,3 +123,20 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# App icon, generated from design/logo (wave variant).
+# Regenerate with: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: design/logo/icon-square.png
+  android: true
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: design/logo/icon-foreground.png
+  adaptive_icon_monochrome: design/logo/icon-monochrome.png
+  ios: true
+  remove_alpha_ios: true
+  windows:
+    generate: true
+    image_path: design/logo/icon-square.png
+  macos:
+    generate: true
+    image_path: design/logo/icon-rounded.png
