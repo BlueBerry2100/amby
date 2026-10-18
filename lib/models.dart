@@ -124,7 +124,8 @@ class Sound {
   final IconData icon;
   final bool isAsset;
 
-  /// Своя картинка для карточки (рисуется ASCII-шейдером).
+  /// Картинка для карточки (рисуется ASCII-шейдером): ключ ассета для встроенных звуков,
+  /// путь к файлу для своих.
   final String? imagePath;
   final ArtPlacement art;
 

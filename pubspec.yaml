@@ -65,6 +65,7 @@ flutter:
 
   assets:
     - assets/sounds/
+    - assets/images/
 
   shaders:
     - shaders/ascii.frag

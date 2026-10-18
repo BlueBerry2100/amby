@@ -2,37 +2,105 @@ import 'package:flutter/material.dart';
 
 import 'models.dart';
 
-/// Встроенные звуки. Файлы лежат в assets/sounds/ (генерируются tool/gen_sounds.sh).
+/// Встроенные звуки. Аудио лежит в assets/sounds/, обложки — в assets/images/.
 const builtInSounds = <Sound>[
-  Sound(id: 'rain', name: 'Дождь', path: 'assets/sounds/rain.ogg', icon: Icons.water_drop),
-  Sound(id: 'ocean', name: 'Океан', path: 'assets/sounds/ocean.ogg', icon: Icons.waves),
-  Sound(id: 'wind', name: 'Ветер', path: 'assets/sounds/wind.ogg', icon: Icons.air),
-  Sound(id: 'stream', name: 'Ручей', path: 'assets/sounds/stream.ogg', icon: Icons.water),
-  Sound(id: 'fan', name: 'Вентилятор', path: 'assets/sounds/fan.ogg', icon: Icons.wind_power),
-  Sound(id: 'white', name: 'Белый шум', path: 'assets/sounds/white.ogg', icon: Icons.blur_on),
-  Sound(id: 'pink', name: 'Розовый шум', path: 'assets/sounds/pink.ogg', icon: Icons.grain),
   Sound(
-    id: 'brown',
-    name: 'Коричневый шум',
-    path: 'assets/sounds/brown.ogg',
-    icon: Icons.blur_circular,
+    id: 'forest',
+    name: 'Nature forest',
+    path: 'assets/sounds/forest.ogg',
+    icon: Icons.forest,
+    imagePath: 'assets/images/forest.jpg',
+    art: ArtPlacement(dy: 0.4516, columns: 44),
+  ),
+  Sound(
+    id: 'wind',
+    name: 'Nature wind',
+    path: 'assets/sounds/wind.ogg',
+    icon: Icons.air,
+    imagePath: 'assets/images/wind.jpg',
+    art: ArtPlacement(dx: 0.8669, columns: 44),
+  ),
+  Sound(
+    id: 'windy_room',
+    name: 'Windy room',
+    path: 'assets/sounds/windy_room.ogg',
+    icon: Icons.sensor_door,
+    imagePath: 'assets/images/windy_room.jpg',
+    art: ArtPlacement(scale: 1.4881, dx: 0.0285, dy: 0.4662, columns: 44),
+  ),
+  Sound(
+    id: 'rain',
+    name: 'Rain',
+    path: 'assets/sounds/rain.ogg',
+    icon: Icons.water_drop,
+    imagePath: 'assets/images/rain.jpg',
+    art: ArtPlacement(dx: -0.2876, columns: 44),
+  ),
+  Sound(
+    id: 'thunder',
+    name: 'Thunder',
+    path: 'assets/sounds/thunder.ogg',
+    icon: Icons.bolt,
+    imagePath: 'assets/images/thunder.jpg',
+    art: ArtPlacement(columns: 44),
+  ),
+  Sound(
+    id: 'storm',
+    name: 'Storm',
+    path: 'assets/sounds/storm.ogg',
+    icon: Icons.thunderstorm,
+    imagePath: 'assets/images/storm.jpg',
+    art: ArtPlacement(scale: 1.4881, dx: -0.1152, dy: 1, columns: 44),
+  ),
+  Sound(
+    id: 'ocean',
+    name: 'Ocean',
+    path: 'assets/sounds/ocean.ogg',
+    icon: Icons.waves,
+    imagePath: 'assets/images/ocean.jpg',
+    art: ArtPlacement(scale: 1.4881, dx: 0.0422, dy: 1, columns: 44),
+  ),
+  Sound(
+    id: 'river',
+    name: 'River',
+    path: 'assets/sounds/river.ogg',
+    icon: Icons.water,
+    imagePath: 'assets/images/river.jpg',
+    art: ArtPlacement(scale: 1.2199, dx: 1, dy: -1, columns: 44),
+  ),
+  Sound(
+    id: 'night',
+    name: 'Night',
+    path: 'assets/sounds/night.ogg',
+    icon: Icons.nightlight,
+    imagePath: 'assets/images/night.jpg',
+    art: ArtPlacement(scale: 2.2144, dx: 0.0801, dy: -0.0966, columns: 44),
+  ),
+  Sound(
+    id: 'campfire',
+    name: 'Campfire',
+    path: 'assets/sounds/campfire.ogg',
+    icon: Icons.local_fire_department,
+    imagePath: 'assets/images/campfire.jpg',
+    art: ArtPlacement(scale: 1.4881, dx: 0.0856, dy: 0.3393, columns: 44),
+  ),
+  Sound(
+    id: 'train',
+    name: 'Train',
+    path: 'assets/sounds/train.ogg',
+    icon: Icons.train,
+    imagePath: 'assets/images/train.jpg',
+    art: ArtPlacement(scale: 1.2199, dx: 0.1252, dy: -0.043, columns: 44),
+  ),
+  Sound(
+    id: 'cafe',
+    name: 'Cafe',
+    path: 'assets/sounds/cafe.ogg',
+    icon: Icons.local_cafe,
+    imagePath: 'assets/images/cafe.jpg',
+    art: ArtPlacement(scale: 1.4881, dx: 0.7898, dy: 0.5294, columns: 44),
   ),
 ];
 
 /// Готовые сеты.
-const builtInSets = <SoundSet>[
-  SoundSet(
-    id: 'set_storm_night',
-    name: 'Дождливая ночь',
-    builtIn: true,
-    volumes: {'rain': 0.8, 'wind': 0.4, 'brown': 0.3},
-  ),
-  SoundSet(id: 'set_seaside', name: 'У моря', builtIn: true, volumes: {'ocean': 0.9, 'wind': 0.25}),
-  SoundSet(id: 'set_focus', name: 'Фокус', builtIn: true, volumes: {'pink': 0.6, 'stream': 0.3}),
-  SoundSet(
-    id: 'set_deep_sleep',
-    name: 'Глубокий сон',
-    builtIn: true,
-    volumes: {'brown': 0.7, 'fan': 0.5},
-  ),
-];
+const builtInSets = <SoundSet>[];

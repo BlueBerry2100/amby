@@ -382,7 +382,7 @@ class _LookOption extends StatelessWidget {
                     width: 104,
                     child: AspectRatio(
                       aspectRatio: preview.tileAspect,
-                      // живая карточка «Дождь» в этом оформлении
+                      // живая карточка первого встроенного звука в этом оформлении
                       child: SoundTile(
                         sound: builtInSounds.first,
                         index: 1,

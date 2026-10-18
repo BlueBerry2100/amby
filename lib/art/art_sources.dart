@@ -2,17 +2,31 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../models.dart';
 
 /// Растровые источники для ASCII-шейдера: картинки из файлов и иконки. Кэшируются.
 class ArtSources {
   static final Map<String, Future<ui.Image>> _cache = {};
 
-  static Future<ui.Image> file(String path) => _cache.putIfAbsent('file:$path', () async {
-    final bytes = await File(path).readAsBytes();
+  static Future<ui.Image> file(String path) =>
+      _cache.putIfAbsent('file:$path', () async => _decode(await File(path).readAsBytes()));
+
+  static Future<ui.Image> asset(String key) => _cache.putIfAbsent(
+    'asset:$key',
+    () async => _decode((await rootBundle.load(key)).buffer.asUint8List()),
+  );
+
+  /// Обложка звука: ассет для встроенных, файл для своих.
+  static Future<ui.Image> cover(Sound sound) =>
+      sound.isAsset ? asset(sound.imagePath!) : file(sound.imagePath!);
+
+  static Future<ui.Image> _decode(Uint8List bytes) async {
     // шейдерам хватает низкого разрешения, обычным обложкам — среднего
     final codec = await ui.instantiateImageCodec(bytes, targetWidth: 720);
     return (await codec.getNextFrame()).image;
-  });
+  }
 
   /// Иконка белым по прозрачному, с мягким свечением — чтобы у краёв был градиент
   /// и в ASCII получались промежуточные символы, а не только «@» и пробел.

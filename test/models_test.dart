@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:amby/catalog.dart';
 import 'package:amby/models.dart';
@@ -51,6 +52,13 @@ void main() {
       expect(art.dx, -1);
       expect(art.dy, 0); // по высоте запаса нет — картинка вписана по высоте
     });
+  });
+
+  test('файлы встроенных звуков и обложек существуют', () {
+    for (final sound in builtInSounds) {
+      expect(File(sound.path).existsSync(), isTrue, reason: sound.path);
+      expect(File(sound.imagePath!).existsSync(), isTrue, reason: sound.imagePath);
+    }
   });
 
   test('встроенные сеты ссылаются только на существующие звуки', () {
